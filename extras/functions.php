@@ -22,11 +22,11 @@
 
     }
 
-    //Step 2: Tell SP API to register a new REST url endpoint
+    //Step 2: Tell WP API to register a new REST url endpoint
     // In 2 parts:  (1) Call built-in add_action() to extend the WP API with customer code
     add_action('rest_api_init', 'register_custom_endpoint');
 
-    // Add our customer function to register the new REST endpoint URL
+    // Add our custom function to register the new REST endpoint URL
     function register_custom_endpoint() {
         //Inside this function, we call another built-in function in WP API named register_rest_route()
         //This function registers a new REST endpoint URL with the WP API
