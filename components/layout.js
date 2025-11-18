@@ -5,7 +5,7 @@ import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
  
 const name = 'Helen the Cat';
-export const siteTitle = 'WordPress REST-JSON Sample Website';
+export const siteTitle = 'WordPress REST-JSON Cats Website';
  
 export default function Layout({ children, home }) {
   return (
