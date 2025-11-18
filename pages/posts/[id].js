@@ -53,10 +53,12 @@ export default function Post({ postData }) {
         {/* Main article container with blog-specific styling */}
         <article className={utilStyles.blogArticle}>
           {/* Display the post title as the main heading */}
-          <h1 className={utilStyles.headingXl}>{postData.acf.cat_name}</h1>
+          <h1 className={utilStyles.headingXl}>{postData.acf.cat_name}</h1>      
           {/* Date container with custom styling */}
           <div className={utilStyles.dateTextPost}>
             <p>{postData.date}</p>
+            <p>{postData.acf.address}</p>
+            <p>{postData.acf.food_favs}</p>
             {/* Use custom Date component to format and display the post date */}
             {/*<Date dateString={postData.date} />*/}
           </div>

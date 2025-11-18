@@ -40,20 +40,20 @@ export default function Home({allPostsData}) {
       {/* Create a section with heading styles for the main content */}
       <section className={utilStyles.headingMd}>
         {/* Display a personal introduction message */}
-        <p>Hello, I'm Helen the British Blue cat. I'm just starting to learn the uses of WordPress REST.</p>
+        <p>Hello, I'm Helen the British Blue cat. I'm just starting to learn the uses of WordPress REST with WP Data Access and ACF plugins.</p>
         {/* Display a sample website notice with a link to the Next.js tutorial */}
         <p>
           (This is a sample website - that I'm building on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial plus the WordPress REST framework</a>.)
+          <a href="https://nextjs.org/learn">our Next.js tutorial plus the WordPress REST custom endpoint</a>.)
         </p>
         {/* Display a playful comment from the cat character expressing pride in their blog creation */}
-        <p>Pretty good for a cat's first effort at getting JSON data into a WordPress REST endpoint, huh?!!</p>
+        <p>Pretty good for a cat's first effort at getting JSON data from a custom WordPress REST endpoint, huh?!!</p>
       </section>
 
        {/* Blog section that displays a list of all available blog posts */}
        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px} ${utilStyles.blogSection}`}>
         {/* Section heading for the blog posts list */}
-        <h2 className={utilStyles.headingLg}>Posts Published in WP Endpoint </h2>
+        <h2 className={utilStyles.headingLg}>My Cat Neighbors</h2>
         {/* Unordered list container for all blog post entries */}
         <ul className={utilStyles.list}>
           {/* Map through each blog post in allPostsData to create individual list items */}
