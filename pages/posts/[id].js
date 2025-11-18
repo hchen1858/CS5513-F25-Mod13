@@ -48,20 +48,23 @@ export default function Post({ postData }) {
       <Layout>
         {/* Use Next.js Head component to set the page title dynamically */}
         <Head>
-          <title>{postData.post_title}</title>
+          <title>{postData.acf.cat_name}</title>
         </Head>
         {/* Main article container with blog-specific styling */}
         <article className={utilStyles.blogArticle}>
           {/* Display the post title as the main heading */}
-          <h1 className={utilStyles.headingXl}>{postData.acf.cat_name}</h1>      
+          <h1 className={utilStyles.headingXl}>Notes About {postData.acf.cat_name}</h1>      
           {/* Date container with custom styling */}
           <div className={utilStyles.dateTextPost}>
-            <p>{postData.date}</p>
-            <p>{postData.acf.address}</p>
-            <p>{postData.acf.food_favs}</p>
+            {/*<p>{postData.date}</p>*/}
+            <p>Home Location: {postData.acf.address}</p>
+            <p>Favorite Food: {postData.acf.food_favs}</p>
             {/* Use custom Date component to format and display the post date */}
             {/*<Date dateString={postData.date} />*/}
           </div>
+          <small className={utilStyles.lightText}>
+              <Date dateString={postData.date} />
+          </small>
           {/* Render the post content as HTML (converted from Markdown) */}
           {/* dangerouslySetInnerHTML is used because the content is trusted HTML from our build process */}
           {/*<div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
