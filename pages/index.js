@@ -27,6 +27,7 @@ export async function getStaticProps() {
       allCatFoodData, // Pass the sorted cat food data to the component
       allCatToysData, // Pass the sorted cat toy data to the component
     },
+    revalidate: 60, // Revalidate the page every 60 seconds  Next.js ISR (Incremental Static Regeneration)
   };
 }
  

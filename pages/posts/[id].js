@@ -23,6 +23,7 @@ export async function getStaticProps({ params }) {
       props: {
         postData,
       },
+      revalidate: 60, // Revalidate the page every 60 seconds  Next.js ISR (Incremental Static Regeneration)
     };
   }
 
