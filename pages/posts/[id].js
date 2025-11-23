@@ -8,7 +8,9 @@ import Head from 'next/head';
 import Date from '../../components/date';
 import Image from 'next/image';
 // Import utility CSS styles for consistent styling
-import utilStyles from '../../styles/utils.module.css'; 
+import utilStyles from '../../styles/utils.module.css';
+// Import got for fetching REST API data
+import got from 'got'; 
 
 
 // Next.js static generation function that runs at build time
@@ -18,10 +20,30 @@ export async function getStaticProps({ params }) {
     // The "await" keyword ensures we wait for the data to be fetched before proceeding
     const postData = await getPostData(params.id);
    
+    // Fetch cat images from REST endpoint and find matching image
+    let catImageUrl = null;
+    if (postData.acf && postData.acf.cat_pic) {
+        try {
+            const catImagesURL = "https://dev-cs-5513-fall-2025-w12.pantheonsite.io/wp-json/twentytwentyfive-child/v1/cat-images";
+            const catImagesResponse = await got(catImagesURL);
+            const catImages = JSON.parse(catImagesResponse.body);
+            
+            // Find the matching image where ID (as string) equals cat_pic
+            const matchingImage = catImages.find(img => img.ID === postData.acf.cat_pic.toString());
+            
+            if (matchingImage && matchingImage.guid) {
+                catImageUrl = matchingImage.guid;
+            }
+        } catch (error) {
+            console.log('Error fetching cat images:', error);
+        }
+    }
+   
     // Return the post data as props to be passed to the Post component
     return {
       props: {
         postData,
+        catImageUrl,
       },
       revalidate: 60, // Revalidate the page every 60 seconds  Next.js ISR (Incremental Static Regeneration)
     };
@@ -42,8 +64,8 @@ export async function getStaticPaths() {
 
 
 // Main React component that renders an individual blog post
-// Receives postData as props from getStaticProps
-export default function Post({ postData }) {
+// Receives postData and catImageUrl as props from getStaticProps
+export default function Post({ postData, catImageUrl }) {
     return (
     // Wrap the content in the Layout component for consistent page structure
       <Layout>
@@ -79,6 +101,18 @@ export default function Post({ postData }) {
                 alt= {postData.altText}
               />
           </div>*/}
+          {/* Display cat image at the bottom of the page if available */}
+          {catImageUrl && (
+            <div className={utilStyles.catImageContainer}>
+              <Image
+                src={catImageUrl}
+                alt=""
+                width={800}
+                height={600}
+                style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
+              />
+            </div>
+          )}
          </article>
       </Layout>
     );

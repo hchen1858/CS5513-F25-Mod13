@@ -71,3 +71,10 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .catImageContainer {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 100%;
+    display: block;
+  }
