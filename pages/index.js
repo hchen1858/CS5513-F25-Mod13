@@ -42,15 +42,15 @@ export default function Home({allPostsData}) {
         {/* Display a personal introduction message */}
         <p>Hello, I'm Helen the British Blue cat. I'm just starting to learn the uses of WordPress REST with WP Data Access and ACF plugins.</p>
         {/* Display a sample website notice with a link to the Next.js tutorial */}
-        <p>
+        {/*<p>
           (This is a sample website - that I'm building on{' '}
           <a href="https://nextjs.org/learn">our Next.js tutorial plus the WordPress REST custom endpoint</a>.)
-        </p>
+        </p> */}
         {/* Display a playful comment from the cat character expressing pride in their blog creation */}
-        <p>Pretty good for a cat's first effort at getting JSON data from a custom WordPress REST endpoint, huh?!!</p>
+        <p>Pretty good for a cat's personal blog that gets JSON data from multiple custom WordPress REST endpoints, huh?!!</p>
       </section>
 
-       {/* Blog section that displays a list of all available blog posts */}
+       {/* Blog section that displays a list of all available blog posts on neighborhood cats */}
        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px} ${utilStyles.blogSection}`}>
         {/* Section heading for the blog posts list */}
         <h2 className={utilStyles.headingLg}>My Cat Neighbors</h2>
@@ -70,7 +70,51 @@ export default function Home({allPostsData}) {
           </li>            
           ))}
         </ul>
-      </section>      
+      </section>
+
+      {/* Blog section that displays a list of all available blog posts on my cat toys */}
+       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px} ${utilStyles.blogSection}`}>
+        {/* Section heading for the blog posts list */}
+        <h2 className={utilStyles.headingLg}>My Cat Toys</h2>
+        {/* Unordered list container for all blog post entries */}
+        <ul className={utilStyles.list}>
+          {/* Map through each blog post in allPostsData to create individual list items */}
+          {allPostsData.map(({ id, date, title }) => (
+            <li className={utilStyles.listItem} key={id}>
+            {/* Create a clickable link to the individual blog post page using Next.js Link component */}
+            <Link href={`/posts/${id}`}>{title}</Link>
+            {/* Line break to separate the title from the date */}
+            <br />
+            {/* Display the publication date in smaller, lighter text using the Date component */}
+            <small className={utilStyles.lightText}>
+              <Date dateString={date} />
+            </small>
+          </li>            
+          ))}
+        </ul>
+      </section>    
+
+      {/* Blog section that displays a list of all available blog posts on my cat foods */}
+       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px} ${utilStyles.blogSection}`}>
+        {/* Section heading for the blog posts list */}
+        <h2 className={utilStyles.headingLg}>My Cat Foods</h2>
+        {/* Unordered list container for all blog post entries */}
+        <ul className={utilStyles.list}>
+          {/* Map through each blog post in allPostsData to create individual list items */}
+          {allPostsData.map(({ id, date, title }) => (
+            <li className={utilStyles.listItem} key={id}>
+            {/* Create a clickable link to the individual blog post page using Next.js Link component */}
+            <Link href={`/posts/${id}`}>{title}</Link>
+            {/* Line break to separate the title from the date */}
+            <br />
+            {/* Display the publication date in smaller, lighter text using the Date component */}
+            <small className={utilStyles.lightText}>
+              <Date dateString={date} />
+            </small>
+          </li>            
+          ))}
+        </ul>
+      </section>                    
 
       {/* Closing Layout component */}
     </Layout>
