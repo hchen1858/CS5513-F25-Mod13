@@ -56,9 +56,10 @@ export default function CatFood({ postData }) {
           <h1 className={utilStyles.headingXl}>Notes About {postData.acf.food_name}</h1>      
           {/* Date container with custom styling */}
           <div className={utilStyles.dateTextPost}>
-            <p>Food Name: {postData.acf.food_name}</p>
-            <p>Description: {postData.acf.food_description}</p>
-            <p>Rating: {postData.acf.rating}</p>
+            <p><strong>Food Name:</strong> {postData.acf.food_name}</p>
+            <p><strong>Description:</strong> {postData.acf.food_description}</p>
+            <p><strong>Rating:</strong> {postData.acf.rating}</p>
+            <p><strong>Food Cost:</strong> {postData.acf.food_cost}</p>
           </div>
           <small className={utilStyles.lightText}>
               <Date dateString={postData.date} />

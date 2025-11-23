@@ -58,8 +58,8 @@ export default function Post({ postData }) {
           {/* Date container with custom styling */}
           <div className={utilStyles.dateTextPost}>
             {/*<p>{postData.date}</p>*/}
-            <p>Home Location: {postData.acf.address}</p>
-            <p>Favorite Food: {postData.acf.food_favs}</p>
+            <p><strong>Home Location:</strong> {postData.acf.address}</p>
+            <p><strong>Favorite Food:</strong> {postData.acf.food_favs}</p>
             {/* Use custom Date component to format and display the post date */}
             {/*<Date dateString={postData.date} />*/}
           </div>

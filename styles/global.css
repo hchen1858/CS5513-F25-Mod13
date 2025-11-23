@@ -39,3 +39,10 @@ img {
   border-color: black;
   border-width: 3px;
 }
+
+p{
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}

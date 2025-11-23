@@ -56,8 +56,9 @@ export default function CatToy({ postData }) {
           <h1 className={utilStyles.headingXl}>Notes About {postData.acf.toy_name}</h1>      
           {/* Date container with custom styling */}
           <div className={utilStyles.dateTextPost}>
-            <p>Toy Name: {postData.acf.toy_name}</p>
-            <p>Description: {postData.acf.toy_description}</p>
+            <p><strong>Toy Name:</strong> {postData.acf.toy_name}</p>
+            <p><strong>Description:</strong> {postData.acf.toy_description}</p>
+            <p><strong>Toy Rating:</strong> {postData.acf.toy_rating}</p>
           </div>
           <small className={utilStyles.lightText}>
               <Date dateString={postData.date} />
