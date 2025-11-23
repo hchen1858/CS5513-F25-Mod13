@@ -7,8 +7,8 @@ import Layout, { siteTitle } from '../components/layout';
 // Import CSS module styles for utility classes used in this component
 import utilStyles from '../styles/utils.module.css';
 
-// Import the getSortedPostsData function from the posts library to fetch and sort blog post data
-import { getSortedPostsData } from '../lib/posts-json';
+// Import the getSortedPostsData, getSortedCatFoodData, and getSortedCatToysData functions from the posts library to fetch and sort blog post data
+import { getSortedPostsData, getSortedCatFoodData, getSortedCatToysData } from '../lib/posts-json';
 // Import the Date component to format and display publication dates for blog posts
 import Date from '../components/date';
 
@@ -16,19 +16,23 @@ import Date from '../components/date';
 // getStaticProps is a Next.js function that runs at build time to pre-render pages with data
 // This function fetches data before the page is rendered, enabling static site generation (SSG)
 export async function getStaticProps() {
-  // Fetch and sort all blog post data from the markdown files in the posts directory
-  const allPostsData = await getSortedPostsData();
+  // Fetch and sort all blog post data from the three WordPress REST endpoints
+  const allPostsData = await getSortedPostsData(); // catid endpoint
+  const allCatFoodData = await getSortedCatFoodData(); // catfood endpoint
+  const allCatToysData = await getSortedCatToysData(); // cattoy endpoint
   // Return the data as props that will be passed to the Home component
   return {
     props: {
-      allPostsData, // Pass the sorted posts data to the component
+      allPostsData, // Pass the sorted cat neighbors data to the component
+      allCatFoodData, // Pass the sorted cat food data to the component
+      allCatToysData, // Pass the sorted cat toy data to the component
     },
   };
 }
  
 // Main Home component that serves as the landing page for the Next.js blog application.
 // This function renders the homepage with a welcome message, site title, and navigation link to the first blog post.
-export default function Home({allPostsData}) {
+export default function Home({allPostsData, allCatFoodData, allCatToysData}) {
   return (
     // Return the JSX structure for the homepage
     <Layout home>
@@ -78,11 +82,11 @@ export default function Home({allPostsData}) {
         <h2 className={utilStyles.headingLg}>My Cat Toys</h2>
         {/* Unordered list container for all blog post entries */}
         <ul className={utilStyles.list}>
-          {/* Map through each blog post in allPostsData to create individual list items */}
-          {allPostsData.map(({ id, date, title }) => (
+          {/* Map through each blog post in allCatToysData to create individual list items */}
+          {allCatToysData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
             {/* Create a clickable link to the individual blog post page using Next.js Link component */}
-            <Link href={`/posts/${id}`}>{title}</Link>
+            <Link href={`/cattoy/${id}`}>{title}</Link>
             {/* Line break to separate the title from the date */}
             <br />
             {/* Display the publication date in smaller, lighter text using the Date component */}
@@ -100,11 +104,11 @@ export default function Home({allPostsData}) {
         <h2 className={utilStyles.headingLg}>My Cat Foods</h2>
         {/* Unordered list container for all blog post entries */}
         <ul className={utilStyles.list}>
-          {/* Map through each blog post in allPostsData to create individual list items */}
-          {allPostsData.map(({ id, date, title }) => (
+          {/* Map through each blog post in allCatFoodData to create individual list items */}
+          {allCatFoodData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
             {/* Create a clickable link to the individual blog post page using Next.js Link component */}
-            <Link href={`/posts/${id}`}>{title}</Link>
+            <Link href={`/catfood/${id}`}>{title}</Link>
             {/* Line break to separate the title from the date */}
             <br />
             {/* Display the publication date in smaller, lighter text using the Date component */}
